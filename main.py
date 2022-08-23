@@ -18,7 +18,7 @@ user_ids = os.environ["USER_ID"].split(";")
 template_id = os.environ["TEMPLATE_ID"]
 
 
-def get_weather():
+def get_weather(city):
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
@@ -33,10 +33,8 @@ def get_weather():
           math.floor(weather['high']), \
           math.floor(weather['low'])
 
-def get_weathers():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-  res = requests.get(url).json()
-  weather = res['data']['list'][0]
+
+  weather = res['data']['list'][1]
   return  weather['s_humidity'], \
           weather['s_wind'], \
           weather['s_airQuality'], \
@@ -71,8 +69,8 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 
-dates, humidity, wind, aiQuality, wea, pro, ci, temperature, highest, lowest = get_weather()
-dates, s_humidity, s_wind, s_aiQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weathers()
+dates, humidity, wind, aiQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
+dates, s_humidity, s_wind, s_aiQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[1])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
         #学校
