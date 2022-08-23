@@ -8,21 +8,30 @@ import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
-city = os.environ['CITY']
+city = os.environ['CITY'].split(";")
 birthday = os.environ['BIRTHDAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
-user_ids = os.environ["USER_ID"].split("\n")
+user_ids = os.environ["USER_ID"].split(";")
 template_id = os.environ["TEMPLATE_ID"]
 
 
-def get_weather():
+def get_weather(city):
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
-  return  weather['date'], weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
+  return  weather['date'], \
+          weather['humidity'], \
+          weather['wind'], \
+          weather['airQuality'], \
+          weather['weather'], \
+          weather['province'], \
+          weather['city'], \
+          math.floor(weather['temp']), 
+          math.floor(weather['high']), 
+          math.floor(weather['low'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -47,16 +56,39 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-dates,wea, temperature, highest, lowest = get_weather()
+
+dates, humidity, wind, aiQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
+#日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
-        "date":{"value":dates,"color":get_random_color()},
+        #学校
+        "s_humidity":{"value":s_humidity,"color":get_random_color()},
+        "s_wind":{"value":s_wind,"color":get_random_color()},
+        "s_aiQuality":{"value":s_aiQuality,"color":get_random_color()},
+        "s_province":{"value":S_pro,"color":get_random_color()},
+        "s_city":{"value":s_ci,"color":get_random_color()},
+        "s_weather":{"value":s_wea,"color":get_random_color()},
+        "s_temperature":{"value":s_temperature,"color":get_random_color()},
+        "s_highest":{"value":s_highest,"color":get_random_color()},
+        "s_lowest":{"value":s_lowest,"color":get_random_color()},
+        
+        #家乡
+        "humidity":{"value":humidity,"color":get_random_color()},
+        "wind":{"value":wind,"color":get_random_color()},
+        "airQuality":{"value":airQuality,"color":get_random_color()},
+        "provice":{"value":pro,"color":get_random_color()},
+        "city":{"value":ci,"color":get_random_color()},
+        #原来的代码
         "weather":{"value":wea,"color":get_random_color()},
         "temperature":{"value":temperature,"color":get_random_color()},
-        "love_days":{"value":get_count(),"color":get_random_color()},
-        "birthday_left":{"value":get_birthday(),"color":get_random_color()},
-        "words":{"value":get_words(),"color":get_random_color()},
-        "highest": {"value":highest,"color":get_random_color()},
-        "lowest":{"value":lowest, "color":get_random_color()}}
+        "highest":{"value":highest,"color":get_random_color()},
+        "lowest":{"value":lowest,"color":get_random_color()},
+  
+        "date":{"value":dates,"color":get_random_color()},
+  
+        "love_days": {"value":get_count,"color":get_random_color()},
+        "birthday_left":{"value":get_birthday, "color":get_random_color()}},
+        "words": {"value":get_words,"color":get_random_color()},
+        }
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)
