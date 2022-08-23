@@ -77,7 +77,7 @@ data = {
         "s_humidity":{"value":s_humidity,"color":get_random_color()},
         "s_wind":{"value":s_wind,"color":get_random_color()},
         "s_aiQuality":{"value":s_aiQuality,"color":get_random_color()},
-        "s_province":{"value":S_pro,"color":get_random_color()},
+        "s_province":{"value":s_pro,"color":get_random_color()},
         "s_city":{"value":s_ci,"color":get_random_color()},
         "s_weather":{"value":s_wea,"color":get_random_color()},
         "s_temperature":{"value":s_temperature,"color":get_random_color()},
