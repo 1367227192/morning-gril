@@ -34,7 +34,7 @@ def get_weather(city):
           math.floor(weather['low'])
 
 
-  weather = res['data']['list'][1]
+  weather = res['data']['list'][0]
   return  weather['s_humidity'], \
           weather['s_wind'], \
           weather['s_airQuality'], \
@@ -70,7 +70,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 dates, humidity, wind, aiQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
-dates, s_humidity, s_wind, s_aiQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[1])
+dates, s_humidity, s_wind, s_aiQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[0])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
         #学校
