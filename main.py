@@ -32,8 +32,7 @@ def get_weather(city):
           math.floor(weather['temp']), \
           math.floor(weather['high']), \
           math.floor(weather['low'])
-  ur2 = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
-  res = requests.get(ur2).json()
+
   weather = res['data']['list'][1]
   return  weather['s_humidity'], \
           weather['s_wind'], \
