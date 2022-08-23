@@ -29,8 +29,8 @@ def get_weather(city):
           weather['weather'], \
           weather['province'], \
           weather['city'], \
-          math.floor(weather['temp']), 
-          math.floor(weather['high']), 
+          math.floor(weather['temp']), \
+          math.floor(weather['high']), \
           math.floor(weather['low'])
 
 def get_count():
