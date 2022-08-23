@@ -23,7 +23,7 @@ def get_weather(city):
   res = requests.get(url).json()
   weather = res['data']['list'][0]
   return weather['date'], weather['weather'], weather['province'], weather['city'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low']),
-math.floor([province'temp1']), math.floor(province['high1']), math.floor(province['low1']), math.floor(city['temp2']), math.floor(city['high2']), math.floor(city['low2'])
+math.floor([province'temp']), math.floor(province['high']), math.floor(province['low']), math.floor(city['temp']), math.floor(city['high']), math.floor(city['low'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -65,12 +65,12 @@ data = {
   "lowest":{"value":lowest, "color":get_random_color()}
   
   "pro":{"value":pro,"color":get_random_color()},
-  "highest1": {"value":highest1,"color":get_random_color()},
-  "lowest1":{"value":lowest1, "color":get_random_color()}
+  "highest": {"value":highest,"color":get_random_color()},
+  "lowest":{"value":lowest, "color":get_random_color()}
   
   "ci":{"value":temperature,"color":get_random_color()},
-  "highest2": {"value":highest2,"color":get_random_color()},
-  "lowest2":{"value":lowest2, "color":get_random_color()}
+  "highest": {"value":highest,"color":get_random_color()},
+  "lowest":{"value":lowest, "color":get_random_color()}
       }
 count = 0
 for user_id in user_ids:
