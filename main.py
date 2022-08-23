@@ -85,9 +85,9 @@ data = {
   
         "date":{"value":dates,"color":get_random_color()},
   
-        "love_days": {"value":get_count,"color":get_random_color()},
-        "birthday_left":{"value":get_birthday, "color":get_random_color()}},
-        "words": {"value":get_words,"color":get_random_color()},
+        "love_days": {"value":get_count(),"color":get_random_color()},
+        "birthday_left":{"value":get_birthday(), "color":get_random_color()}},
+        "words": {"value":get_words(),"color":get_random_color()},
         }
 count = 0
 for user_id in user_ids:
