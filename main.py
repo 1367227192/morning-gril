@@ -8,12 +8,14 @@ import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
-city = os.environ['CITY'].split(";")
+#多个城市用;隔开  例如:海口;三亚
+city = os.environ['CITY'].split(";")     
 birthday = os.environ['BIRTHDAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
+#多个微信号用;隔开  例如:oucy75_tlP24JqUXwfF94fYEPhlU;oucy75_tlP24JqUXwfF94fYEPhlUse
 user_ids = os.environ["USER_ID"].split(";")
 template_id = os.environ["TEMPLATE_ID"]
 
