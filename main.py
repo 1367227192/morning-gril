@@ -84,7 +84,7 @@ data = {
         "s_temperature":{"value":s_temperature,"color":get_random_color()},
         "s_highest":{"value":s_highest,"color":get_random_color()},
         "s_lowest":{"value":s_lowest,"color":get_random_color()},
-        "s_date":{"value":s_dates,"color":get_random_color()},
+        "s_date":{"value":s_date,"color":get_random_color()},
         #家乡
         "humidity":{"value":humidity,"color":get_random_color()},
         "wind":{"value":wind,"color":get_random_color()},
