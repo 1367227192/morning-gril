@@ -71,7 +71,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 dates, humidity, wind, airQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
-dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[0])
+s_dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[0])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
         #学校
@@ -84,7 +84,7 @@ data = {
         "s_temperature":{"value":s_temperature,"color":get_random_color()},
         "s_highest":{"value":s_highest,"color":get_random_color()},
         "s_lowest":{"value":s_lowest,"color":get_random_color()},
-        "s_date":{"value":s_date,"color":get_random_color()},
+        "s_date":{"value":s_dates,"color":get_random_color()},
         #家乡
         "humidity":{"value":humidity,"color":get_random_color()},
         "wind":{"value":wind,"color":get_random_color()},
