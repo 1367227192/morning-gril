@@ -16,7 +16,10 @@ app_secret = os.environ["APP_SECRET"]
 
 user_ids = os.environ["USER_ID"].split(";")
 template_id = os.environ["TEMPLATE_ID"].split(";")
-
+#当需要涉及多个城市时CITY中的内容用;(英文状态下)分隔 
+#例如：CITY中的内容：海口;三亚 多个微信号和多套测试模板时，在设置中设置时也是需要用;(英文状态下)分隔USER_ID和TEMPLATE_ID中的内容的。 
+#例如TEMPLATE_ID中的内容为： Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Yc(测试号); Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Ycang(测试号) 
+#例如USER_ID中的内容为：oucy75_tlP24JqUXwfF94fYEPhlU(微信号);oucy75_tlP24JqUXwfF94fYEPhlUsen(微信号)
 
 def get_weather(city):
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -96,9 +99,8 @@ data = {
         "temperature":{"value":temperature,"color":get_random_color()},
         "highest":{"value":highest,"color":get_random_color()},
         "lowest":{"value":lowest,"color":get_random_color()},
-  
         "date":{"value":dates,"color":get_random_color()},
-  
+        
         "love_days": {"value":get_count(),"color":get_random_color()},
         "birthday_left": {"value":get_birthday(), "color":get_random_color()},
         "words": {"value":get_words(),"color":get_random_color()},
