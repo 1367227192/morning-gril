@@ -67,34 +67,23 @@ def get_words():
 
 
 
-def get_txt1():
-  txt1 = requests.get("https://api.shadiao.pro/chp")
-  if txt1.status_code != 200:
-    return get_txt1()
-  return txt1.json()['data']['text']
+#def get_txt1():
+  #txt1 = requests.get("https://api.shadiao.pro/chp")
+  #if txt1.status_code != 200:
+   # return get_txt1()
+  #return txt1.json()['data']['text']
 
-def get_txt2():
-  txt2 = requests.get("https://api.shadiao.pro/chp")
-  if txt2.status_code != 200:
-    return get_txt2()
-  return txt2.json()['data']['text']
+#def get_txt2():
+ # txt2 = requests.get("https://api.shadiao.pro/chp")
+  #if txt2.status_code != 200:
+   # return get_txt2()
+ # return txt2.json()['data']['text']
 
-def get_txt3():
-  txt3 = requests.get("https://api.shadiao.pro/chp")
-  if txt3.status_code != 200:
-    return get_txt3()
-  return txt3.json()['data']['text']
-
-
-
-
-
-
-
-
-
-
-
+#def get_txt3():
+  #txt3 = requests.get("https://api.shadiao.pro/chp")
+  #if txt3.status_code != 200:
+    #return get_txt3()
+  #return txt3.json()['data']['text']
 
 
 
@@ -138,9 +127,9 @@ data = {
         "love_days": {"value":get_count(),"color":get_random_color()},
         "birthday_left": {"value":get_birthday(), "color":get_random_color()},
         "words": {"value":get_words(),"color":get_random_color()},
-        "txt1": {"value":get_txt1(),"color":get_random_color()},
-        "txt2": {"value":get_txt2(),"color":get_random_color()},
-        "txt3": {"value":get_txt3(),"color":get_random_color()},
+        #"txt1": {"value":get_txt1(),"color":get_random_color()},
+        #"txt2": {"value":get_txt2(),"color":get_random_color()},
+        #"txt3": {"value":get_txt3(),"color":get_random_color()},
         }
 count = 0
 for user_id in user_ids:
