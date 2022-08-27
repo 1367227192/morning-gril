@@ -16,8 +16,9 @@ app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
 #多个微信号用;隔开  例如:oucy75_tlP24JqUXwfF94fYEPhlU;oucy75_tlP24JqUXwfF94fYEPhlUse
-user_ids = os.environ["USER_ID"].split(";")
-template_id = os.environ["TEMPLATE_ID"].split(";")
+user_ids = os.environ["USER_ID"]
+#多个模板号用;隔开  例如:Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Yc;iKJYJLHcZz9xkLqCkjgNctX2DvWWn4oIXoyo1KWgIiI
+template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather(city):
@@ -65,28 +66,6 @@ def get_words():
   return words.json()['data']['text']
 
 
-
-
-#def get_txt1():
-  #txt1 = requests.get("https://api.shadiao.pro/chp")
-  #if txt1.status_code != 200:
-   # return get_txt1()
-  #return txt1.json()['data']['text']
-
-#def get_txt2():
- # txt2 = requests.get("https://api.shadiao.pro/chp")
-  #if txt2.status_code != 200:
-   # return get_txt2()
- # return txt2.json()['data']['text']
-
-#def get_txt3():
-  #txt3 = requests.get("https://api.shadiao.pro/chp")
-  #if txt3.status_code != 200:
-    #return get_txt3()
-  #return txt3.json()['data']['text']
-
-
-
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
@@ -127,9 +106,6 @@ data = {
         "love_days": {"value":get_count(),"color":get_random_color()},
         "birthday_left": {"value":get_birthday(), "color":get_random_color()},
         "words": {"value":get_words(),"color":get_random_color()},
-        #"txt1": {"value":get_txt1(),"color":get_random_color()},
-        #"txt2": {"value":get_txt2(),"color":get_random_color()},
-        #"txt3": {"value":get_txt3(),"color":get_random_color()},
         }
 count = 0
 for user_id in user_ids:
