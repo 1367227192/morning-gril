@@ -8,16 +8,13 @@ import random
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
-#多个城市用;隔开  例如:海口;三亚
-city = os.environ['CITY'].split(";")     
+city = os.environ['CITY'].split(";")
 birthday = os.environ['BIRTHDAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
-#多个微信号用;隔开  例如:oucy75_tlP24JqUXwfF94fYEPhlU;oucy75_tlP24JqUXwfF94fYEPhlUse
-user_ids = os.environ["USER_ID"]
-#多个模板号用;隔开  例如:Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Yc;iKJYJLHcZz9xkLqCkjgNctX2DvWWn4oIXoyo1KWgIiI
+user_ids = os.environ["USER_ID"].split(";")
 template_id = os.environ["TEMPLATE_ID"]
 
 
@@ -38,7 +35,7 @@ def get_weather(city):
 
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][1]
+  weather = res['data']['list'][0]
   return  weather['s_humidity'], \
           weather['s_wind'], \
           weather['s_airQuality'], \
@@ -65,7 +62,6 @@ def get_words():
     return get_words()
   return words.json()['data']['text']
 
-
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
@@ -75,7 +71,7 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 dates, humidity, wind, airQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
-s_dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[1])
+dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[0])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
         #学校
@@ -88,7 +84,7 @@ data = {
         "s_temperature":{"value":s_temperature,"color":get_random_color()},
         "s_highest":{"value":s_highest,"color":get_random_color()},
         "s_lowest":{"value":s_lowest,"color":get_random_color()},
-        "s_date":{"value":s_dates,"color":get_random_color()},
+        
         #家乡
         "humidity":{"value":humidity,"color":get_random_color()},
         "wind":{"value":wind,"color":get_random_color()},
