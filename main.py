@@ -72,8 +72,9 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 
+txt1, txt2, txt3 = get_weather()
 dates, humidity, wind, airQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
-s_dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest, txt1, txt2, txt3 = get_weather(city[1])
+s_dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[1])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
         #学校
