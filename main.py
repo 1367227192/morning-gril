@@ -35,7 +35,7 @@ def get_weather(city):
 
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
+  weather = res['data']['list'][1]
   return  weather['s_humidity'], \
           weather['s_wind'], \
           weather['s_airQuality'], \
