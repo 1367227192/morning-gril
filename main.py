@@ -15,7 +15,7 @@ app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
 user_ids = os.environ["USER_ID"].split(";")
-template_id = os.environ["TEMPLATE_ID"].split(";")
+template_id = os.environ["TEMPLATE_ID"]
 #当需要涉及多个城市时CITY中的内容用;(英文状态下)分隔 
 #例如：CITY中的内容：海口;三亚 多个微信号和多套测试模板时，在设置中设置时也是需要用;(英文状态下)分隔USER_ID和TEMPLATE_ID中的内容的。 
 #例如TEMPLATE_ID中的内容为： Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Yc(测试号); Yl4UXXhTXEQZ67bDR8nCvEclg2XfXrm9dvQg8SzV_Ycang(测试号) 
