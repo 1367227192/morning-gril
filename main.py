@@ -17,7 +17,7 @@ app_secret = os.environ["APP_SECRET"]
 
 #多个微信号用;隔开  例如:oucy75_tlP24JqUXwfF94fYEPhlU;oucy75_tlP24JqUXwfF94fYEPhlUse
 user_ids = os.environ["USER_ID"].split(";")
-template_id = os.environ["TEMPLATE_ID"].splis(";")
+template_id = os.environ["TEMPLATE_ID"].split(";")
 
 
 def get_weather(city):
