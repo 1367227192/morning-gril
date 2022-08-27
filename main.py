@@ -49,6 +49,19 @@ def get_weather(city):
           math.floor(weather['s_high']), \
           math.floor(weather['s_low'])
 
+url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  res = requests.get(url).json()
+  weather = res['data']['list'][2]
+  return  weather['w_humidity'], \
+          weather['w_wind'], \
+          weather['w_airQuality'], \
+          weather['w_weather'], \
+          weather['w_province'], \
+          weather['w_city'], \
+          math.floor(weather['w_temp']), \
+          math.floor(weather['w_high']), \
+          math.floor(weather['w_low'])
+
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
@@ -75,9 +88,10 @@ wm = WeChatMessage(client)
 
 dates, humidity, wind, airQuality, wea, pro, ci, temperature, highest, lowest = get_weather(city[0])
 s_dates, s_humidity, s_wind, s_airQuality, s_wea, s_pro, s_ci, s_temperature, s_highest, s_lowest = get_weather(city[1])
+w_dates, w_humidity, w_wind, w_airQuality, w_wea, w_pro, w_ci, w_temperature, w_highest, w_lowest = get_weather(city[2])
 #日期    湿度     风向   空气质量  天气  省份 城市     温度     最高气温   最低气温
 data = {
-        #学校
+        #海南三亚
         "s_humidity":{"value":s_humidity,"color":get_random_color()},
         "s_wind":{"value":s_wind,"color":get_random_color()},
         "s_airQuality":{"value":s_airQuality,"color":get_random_color()},
@@ -88,7 +102,8 @@ data = {
         "s_highest":{"value":s_highest,"color":get_random_color()},
         "s_lowest":{"value":s_lowest,"color":get_random_color()},
         "s_date":{"value":s_dates,"color":get_random_color()},
-        #家乡
+  
+        #海南海口
         "humidity":{"value":humidity,"color":get_random_color()},
         "wind":{"value":wind,"color":get_random_color()},
         "airQuality":{"value":airQuality,"color":get_random_color()},
@@ -100,6 +115,18 @@ data = {
         "highest":{"value":highest,"color":get_random_color()},
         "lowest":{"value":lowest,"color":get_random_color()},
         "date":{"value":dates,"color":get_random_color()},
+  
+        #湖北武汉
+        "w_humidity":{"value":s_humidity,"color":get_random_color()},
+        "w_wind":{"value":s_wind,"color":get_random_color()},
+        "w_airQuality":{"value":s_airQuality,"color":get_random_color()},
+        "w_province":{"value":s_pro,"color":get_random_color()},
+        "w_city":{"value":s_ci,"color":get_random_color()},
+        "w_weather":{"value":s_wea,"color":get_random_color()},
+        "w_temperature":{"value":s_temperature,"color":get_random_color()},
+        "w_highest":{"value":s_highest,"color":get_random_color()},
+        "w_lowest":{"value":s_lowest,"color":get_random_color()},
+        "w_date":{"value":s_dates,"color":get_random_color()},
         
         "love_days": {"value":get_count(),"color":get_random_color()},
         "birthday_left": {"value":get_birthday(), "color":get_random_color()},
